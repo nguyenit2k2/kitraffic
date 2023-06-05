@@ -419,28 +419,51 @@ const wintips=[
 const TrafficTH = document.querySelector("#tinhot");
 const TrafficLD = document.querySelector("#landing");
 const TrafficWT = document.querySelector("#wintips");
+const buttons = document.querySelectorAll('button');
+
+
 window.addEventListener("DOMContentLoaded", function () {
     displayTH(tinhot);
     displayLD(landing);
     displayWT(wintips);
   });
 function displayTH(trafficLinks){
+    let count = 1;
     let displayLinks = trafficLinks.map(function (links){
-        return `<a href="${links.link}"> <button >1</button></a>`
+        let buttonNumber = count++;
+        return `<a href="${links.link}"> <button id="button-${buttonNumber}" class="traffic-button">${buttonNumber}</button></a>`
     });
     displayLinks.join("");
     TrafficTH.innerHTML = displayLinks ;
+    const buttons = document.querySelectorAll('.traffic-button');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            // Loại bỏ class "selected" cho tất cả các nút button
+            buttons.forEach((btn) => {
+                btn.classList.remove('selected');
+            });
+
+            // Thêm class "selected" cho nút button được click
+            button.classList.add('selected');
+        });
+    });
 }
 function displayLD(trafficLinks){
+    let count = 1;
     let displayLinks = trafficLinks.map(function (links){
-        return `<a href="${links.link}"> <button >1</button></a>`
+        let buttonNumber = count++;
+        return `<a href="${links.link}"> <button >${buttonNumber}</button></a>`
+        
     });
     displayLinks.join("");
     TrafficLD.innerHTML = displayLinks ;
 }
 function displayWT(trafficLinks){
+    let count = 1;
     let displayLinks = trafficLinks.map(function (links){
-        return `<a href="${links.link}"> <button >1</button></a>`
+        let buttonNumber = count++;
+        return `<a href="${links.link}"> <button >${buttonNumber}</button></a>`
     });
     displayLinks.join("");
     TrafficWT.innerHTML = displayLinks ;
